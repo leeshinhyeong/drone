@@ -63,11 +63,7 @@ class SDS021Reader:
                 species[1].append(values[1])
                 print("PM2.5: {}, PM10: {}".format(values[0], values[1])) 
                 
-                time.sleep(1)  # wait for one second
-            try:
-                values = self.readValue()
-                species[0].append(values[0])
-                species[1].append(values[1])
+                # time.sleep(1)  # wait for one second
 
                 conn = pymysql.connect(host='52.231.75.145', user='root', password='1234',db='mysql', charset='utf8')
 
