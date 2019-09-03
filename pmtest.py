@@ -73,7 +73,7 @@ class SDS021Reader:
 
                 sql = """insert into dust_drone(drone_id, dust_id, chkpmValue, pm25Value, pm10Value, datecreated) values('drone01', 'dust01', 'Eulgiro4ga', %s, %s, now())""";
 
-                curs.execute(sql, (values[0], values[1]))
+                curs.execute(sql, (str(values[0]), str(values[1])))
 
                 conn.commit()
 
