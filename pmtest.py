@@ -61,9 +61,32 @@ class SDS021Reader:
                 values = self.readValue()
                 species[0].append(values[0])
                 species[1].append(values[1])
-                # print("PM2.5: {}, PM10: {}".format(values[0], values[1])) 
+                print("PM2.5: {}, PM10: {}".format(values[0], values[1])) 
                 
                 time.sleep(1)  # wait for one second
+            try:
+                values = self.readValue()
+                species[0].append(values[0])
+                species[1].append(values[1])
+
+                conn = pymysql.connect(host='52.231.75.145', user='root', password='1234',db='mysql', charset='utf8')
+
+                curs = conn.cursor()
+
+
+
+                sql = """insert into dust_drone(drone_id, dust_id, chkpmValue, pm25Value, pm10Value, datecreated) values('drone01', 'dust01', 'Eulgiro4ga', %s, %s, now())""";
+
+                curs.execute(sql, (values[0], values[1]))
+
+                conn.commit()
+
+                conn.close()
+
+                sys.exit(1)
+
+                time.sleep(1)
+
             except KeyboardInterrupt:
                 print("Quit!")
                 sys.exit()
