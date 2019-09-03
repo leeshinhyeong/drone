@@ -11,5 +11,5 @@ def db_insert(a, b, c) :
     conn.close()
     #@sys.exit(1)
 
-db_insert(12321321,12,35)
+db_insert('test',12,35)
 
