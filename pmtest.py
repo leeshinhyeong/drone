@@ -61,7 +61,7 @@ class SDS021Reader:
                 values = self.readValue()
                 species[0].append(values[0])
                 species[1].append(values[1])
-                print("PM2.5: {}, PM10: {}".format(values[0], values[1])) 
+                # print("PM2.5: {}, PM10: {}".format(values[0], values[1])) 
                 
                 time.sleep(1)  # wait for one second
             except KeyboardInterrupt:
