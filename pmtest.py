@@ -61,9 +61,28 @@ class SDS021Reader:
                 values = self.readValue()
                 species[0].append(values[0])
                 species[1].append(values[1])
-                print("PM2.5: {}, PM10: {}".format(10*values[0], 10*values[1])) 
+                print("PM2.5: {}, PM10: {}".format(values[0], values[1])) 
                 print(values[0])
-                time.sleep(10)  # wait for one second
+                time.sleep(1)  # wait for one second
+
+                #내가 추가한 부분@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2
+                conn = pymysql.connect(host='52.231.75.145', user='root', password='1234',db='mysql', charset='utf8')
+
+                curs = conn.cursor()
+
+
+
+                sql = """insert into dust(drone_id, dust_id, chkpmValue, pm25Value, pm10Value, datecreated) values('drone01', 'dust01', 'Eulgiro4ga', %s, %s, now())""";
+
+                curs.execute(sql, (values[0], values[0]))
+
+                conn.commit()
+
+                conn.close()
+
+                sys.exit(1)
+
+                #내가 추가한 부분 끝@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22
             except KeyboardInterrupt:
                 print("Quit!")
                 sys.exit()
@@ -85,27 +104,22 @@ if len(sys.argv)==2:
 else:
     loop(USBPORT)
 
-def db_insert(a, b) :
+# def db_insert(a, b) :
 
-    # DB Connect
+#     # DB Connect
 
-    conn = pymysql.connect(host='52.231.75.145', user='root', password='1234',db='mysql', charset='utf8')
+#     conn = pymysql.connect(host='52.231.75.145', user='root', password='1234',db='mysql', charset='utf8')
 
-    curs = conn.cursor()
-
-
-
-    sql = """insert into dust(drone_id, dust_id, chkpmValue, pm25Value, pm10Value, datecreated) values('drone01', 'dust01', 'Eulgiro4ga', %s, %s, now())""";
-
-    curs.execute(sql, (a, b))
-
-    conn.commit()
-
-    conn.close()
-
-    sys.exit(1)
+#     curs = conn.cursor()
 
 
-print(pm25)
-print((values[3]*256 + values[2])/10.0)
-print("PM2.5: {}, PM10: {}".format(values[0], values[1]))
+
+#     sql = """insert into dust(drone_id, dust_id, chkpmValue, pm25Value, pm10Value, datecreated) values('drone01', 'dust01', 'Eulgiro4ga', %s, %s, now())""";
+
+#     curs.execute(sql, (a, b))
+
+#     conn.commit()
+
+#     conn.close()
+
+#     sys.exit(1)
