@@ -65,7 +65,7 @@ class SDS021Reader:
                 print(values[0])
                 time.sleep(1)  # wait for one second
 
-                #내가 추가한 부분@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2
+                #part i add @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2
                 conn = pymysql.connect(host='52.231.75.145', user='root', password='1234',db='mysql', charset='utf8')
 
                 curs = conn.cursor()
@@ -82,7 +82,7 @@ class SDS021Reader:
 
                 sys.exit(1)
 
-                #내가 추가한 부분 끝@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22
+                #XXXXXXXXXXXXXXXXXXXXXXx@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22
             except KeyboardInterrupt:
                 print("Quit!")
                 sys.exit()
